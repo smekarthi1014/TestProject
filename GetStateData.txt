@@ -1,0 +1,93 @@
+//Class to read State Name/ State Abbreviation to return respective Largest City & Capital
+ 
+package ProjectPackage;
+import java.util.Scanner;
+public class GetStateData {
+    public static int getStateInfo(String stateInfo[][],String state)
+   {
+       int position = -1;        //initializing the array
+       boolean found = false;    //initializing the match condition
+       for (int index=0; index<stateInfo.length && !found; index++) //to traverse through the 2D arrays
+       {
+           if(stateInfo[index][0].equalsIgnoreCase(state) | stateInfo[index][1].equalsIgnoreCase(state))  //to match input with the State Name OR state abbreviation
+               position=index;             
+       }
+       return position;   //returns the state's largest city/ capital
+   }
+ 
+ 
+    public static void main(String[] args) {
+        Scanner userInput = new Scanner(System.in); //reading user input through console
+        //declare the array data from data in REST webservice provided
+        String[][] stateInformation = new String[][] {
+            {"Alabama", "AL", "Birmingham", "Montgomery"},
+            {"Alaska", "AK", "Anchorage", "Juneau"},
+            {"Arizona", "AZ", "Phoenix", "Phoenix"},
+            {"Arkansas", "AR", "Little Rock", "Little Rock"},
+            {"California", "CA", "Los Angeles", "Sacramento"},
+            {"Colorado", "CO", "Denver", "Denver"},
+            {"Connecticut", "CT", "Bridgeport", "Hartford"},
+            {"Delaware", "DE", "Wilmington", "Dover"},
+            {"Florida", "FL", "Jacksonville", "Tallahassee"},
+            {"Georgia", "GA", "Atlanta", "Atlanta"},
+            {"Hawaii", "HI", "Honolulu", "Honolulu"},
+            {"Idaho", "ID", "Boise", "Boise"},
+            {"Illinois", "IL", "Chicago", "Springfield"},
+            {"Indiana", "IN", "Indianapolis", "Indianapolis"},
+            {"Iowa", "IA", "Des Moines", "Des Moines"},
+            {"Kansas", "KS", "Wichita", "Topeka"},
+            {"Kentucky", "KY", "Louisville", "Frankfort"},         
+            {"Louisiana", "LI", "New Orleans", "Baton Rouge"},
+            {"Maine", "ME", "Portland", "Augusta"},
+            {"Maryland", "MD","Baltimore", "Annapolis"},
+            {"Massachusetts", "MA", "Boston", "Boston"},
+            {"Michigan", "MI", "Detroit", "Lansing"},
+            {"Minnesota", "MN", "Minneapolis", "St. Paul"},
+            {"Mississippi", "MS", "Jackson", "Jackson"},
+            {"Missouri", "MO", "Kansas City", "Jefferson City"},
+            {"Montana", "MT", "Billings", "Helena"},
+            {"Nebraska", "NE", "Omaha", "Lincoln"},
+            {"Nevada", "NV",  "Las Vegas", "Carson City"},
+            {"New Hampshire", "NH", "Manchester", "Concord"},
+            {"New Jersey", "NJ", "Newark", "Trenton"},
+            {"New Mexico", "NM", "Albuquerque", "Santa Fe"},
+            {"New York", "NY", "New York City", "Albany"},
+            {"North Carolina", "NC", "Charlotte", "Raleigh"},
+            {"North Dakota", "ND", "Fargo", "Bismarck"},
+            {"Ohio", "OH", "Columbus", "Columbus"},
+            {"Oklahoma", "OK", "Oklahoma City","Oklahoma City"},          
+            {"Oregon", "OR", "Portland", "Salem"},
+            {"Pennsylvania", "PA", "Philadelphia", "Harrisburg"},
+            {"Rhode Island", "RI", "Providence", "Providence"},         
+            {"South Carolina", "SC", "Charleston", "Columbia"},
+            {"South Dakota", "SD", "Sioux Falls", "Pierre"},
+            {"Tennessee", "TN", "Nashville", "Nashville"},
+            {"Texas","TX", "Houston", "Austin"},
+            {"Utah","UT", "Salt Lake City", "Salt Lake City"},
+            {"Vermont","VT", "Burlington", "Burlington"},
+            {"Virginia", "VI", "Virginia Beach"," Richmond"},
+            {"Washington", "WA", "Seattle", "Olympia"},
+            {"West Virginia", "WV", "Charleston", "Charleston"},
+            {"Wisconsin", "WI", "Milwaukee", "Madison"},
+            {"Wyoming","WY", "Cheyenne", "Cheyenne"}
+        };
+        while(true) {
+            System.out.println("Enter a State or  type none to exit the program:");
+            String stateName = userInput.next();     //user input
+            if(stateName.equalsIgnoreCase("none")) //condition to check for exit
+            {
+                System.exit(0);
+            }
+            else {
+                int position = getStateInfo(stateInformation, stateName);
+                if(position != -1) {
+                    System.out.println("Largest City: " + stateInformation[position][2]);          //prints largest city
+                    System.out.println("Capital: " + stateInformation[position][3]);       //prints capital          
+                }
+                else {
+                    System.out.println("Invalid State Entered");        //for all invlaid entries
+                }              
+            }          
+        }
+    }
+}
